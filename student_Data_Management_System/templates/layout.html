@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Student :
+        {% block title %}
+            Layout
+        {% endblock title %}   
+    </title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class='bg-slate-800'>
+    <nav class='w-full bg-slate-700'>
+        <div class='flex items-center justify-between py-4 px-9'>
+            <div class=''>
+                <ul class='flex text-orange-600 justify-between items-center'>
+                    <li><a href="{% url 'Show_data' %}" class='text-4xl font-bold pl-6 hover:text-orange-800'>Data</a></li>
+                    <li><a href="{% url 'Show_data' %}" class='text-xl font-medium pl-6 hover:text-orange-800'>View Data</a></li>
+                    <li><a href="{% url 'Add_data' %}" class='text-xl font-medium pl-6 hover:text-orange-800'>Add data</a></li>
+                </ul>
+            </div>
+            <div>
+                
+                {% if user.is_authenticated %}
+                <ul class='flex text-orange-600 justify-between items-center'>
+                    <li class='mr-4'>
+                        <a href="{% url 'Logout' %}" class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-800 focus:outline-none focus:ring-2'>Logout</a>
+                    </li>
+                </ul>
+                    {% else %}
+                    <ul class='flex text-orange-600 justify-between items-center'>
+                        <li class='mr-4'><a href="{% url 'Login' %}" class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-900 focus:outline-none focus:ring-2'>login</a></li>
+                        <li><a href="{% url 'Register' %}" class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2'>Register</a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        {% block content %}
+    <h1 class='text-center text-3xl font-bold p-5 text-orange-600'>Student Data Management System</h1>
+    {% endblock content %} 
+    </div> 
+</body>
+</html>

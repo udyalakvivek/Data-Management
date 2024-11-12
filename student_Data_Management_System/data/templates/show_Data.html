@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Show All Data Of The Student
+{% endblock title %}
+
+
+
+{% block content %}
+ <h1 class='text-center text-5xl font-bold p-5 text-orange-600 mb-3'>Student Data ManageMent System In Django</h1>    
+<div class="flex justify-center items-center mb-4">
+    <div class='border-4 border-orange-600 w-4/6'>
+        <h1 class='text-center text-3xl font-bold p-4 text-white bg-orange-600'>Show All Student Data</h1>
+        
+        {% if show_Data %}
+        <div class=''>
+            <table class="text-center">
+                <thead>
+                  <tr class='border border-orange-600 text-orange-600 text-xl'>
+                    <th class='border border-orange-600 px-3 py-2'>Name</th>
+                    <th class='border border-orange-600 px-3 py-2'>Father Name</th>
+                    <th class='border border-orange-600 px-3 py-2'>Mother Name</th>
+                    <th class='border border-orange-600 px-4 py-2'>Roll No.</th>
+                    <th class='border border-orange-600 px-4 py-2'>Gmail</th>
+                    <th class='border border-orange-600 px-5 py-2'>Update | Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for ustd in show_Data %}
+                  <tr class='text-orange-600'>
+                    <td class='border border-orange-600 py-2 px-1 hover:text-white'><a href="{% url 'Single_data' ustd.id%}">{{ustd.name}}</a></td>
+                    <td class='border border-orange-600 py-2'>{{ustd.father_name}}</td>
+                    <td class='border border-orange-600 py-2'>{{ustd.mother_name}}</td>
+                    <td class='border border-orange-600 py-2'>{{ustd.roll_number}}</td>
+                    <td class='border border-orange-600 py-2 px-1'>{{ustd.email}}</td>
+                    <td class='border border-orange-600 py-2'>
+                        <div class='flex ml-1'>
+                            <a href=" {% url 'Update_data' ustd.id%}">
+                                <button
+                        type='button'
+                        class='ml-5 px-3 py-2 border border-transparent text-sm font-bold rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2'
+                        >Edit</button>
+                            </a>&nbsp &nbsp
+                            <form method='post' class='' action="{% url 'Delete_data' ustd.id%}">
+                                {% csrf_token %}
+                                <button
+                                    class='px-3 py-2 border border-transparent text-sm font-bold rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2' type='submit'
+                                    >Delete
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                  </tr>
+                  {% endfor %}   
+                </tbody>
+              </table>
+        </div>
+        {% else %}
+        <h2 class='text-center w-full text-2xl font-bold text-orange-600'>No Record Of the Student</h2>
+        {% endif %}        
+    </div>
+</div>
+
+<a href="{% url 'Add_data' %}" class='ml-52 my-3 px-3 py-2 border border-transparent text-sm font-bold rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2'>Add Data</a>   
+{% endblock content %}
+    
+    

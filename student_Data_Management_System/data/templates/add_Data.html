@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Add And Showing Deatails Of Students
+{% endblock title %}
+
+
+{% block content %}
+<h1 class='text-center text-5xl font-bold p-5 text-orange-600'>Student Data Management System In Django </h1>
+<div class='flex justify-center items-center'>
+    <div class='border-2 border-orange-600 w-3/5'>
+        <h1 class='text-center text-3xl font-bold p-4 bg-orange-600 text-white'>Add Student Details</h1>
+         <form method='post' class='text-orange-600 p-5'>
+            {% csrf_token %}
+           <div>
+            <div class='mb-2'>
+                <label for="id_name" class="text-xl font-medium text-orange-600 mb-3">First Name : </label>
+                {{form_Data.name}}
+            </div>
+            <div class='mb-2'>
+                <label for="id_name" class="text-xl font-medium text-orange-600">Father Name : </label>
+                {{form_Data.father_name}}
+            </div>
+            <div class='mb-2'>
+                <label for="id_name" class="text-xl font-medium text-orange-600">Mother Name : </label>
+                {{form_Data.mother_name}}
+            </div>
+            <div class='mb-2'>
+                <label for="id_name" class="text-xl font-medium text-orange-600">Gmail: </label>
+                {{form_Data.email}}
+            </div>
+            <div class='mb-2'>
+                <label for="id_name" class="text-xl font-medium text-orange-600">Roll No: </label>
+                {{form_Data.roll_number}}
+            </div>
+            
+           </div>
+                <button class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 mt-4'
+            type='submit'>
+                 Add
+            </button>
+            
+            <a href="{% url 'Show_data' %}" class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 ' >View Data</a>
+         </form>
+    </div>
+</div>
+{% endblock content %}
+    
+    

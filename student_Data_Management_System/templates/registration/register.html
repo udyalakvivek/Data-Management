@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Register
+{% endblock title %}
+
+
+{% block content %}
+    <div class='flex align-center justify-center my-6'>
+        <div class='w-1/2 border-4 border-orange-600 p-6 text-orange-600 rounded-xl'>
+            <p class="alert">
+                {% if messages %}
+                {% for msg in messages %}
+                    {% if msg.tags %}
+                        <p class="alert alert-{{msg.tags}} mt-2">{{msg}} &nbsp; {{msg.tags}}  </p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            </p>
+            <h1 class='text-3xl font-semibold py-4'>Register Here</h1>
+            <form action="" method='post' novalidate>
+                {% csrf_token %}
+                {% if r_forms.non_field_errors %}
+                        {% for error in r_forms.non_field_errors %}
+                            <p class="error">{{error|striptags}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {{r_forms.as_p}}
+                <div class='mt-4'>
+                    <p>We have already account! <a href="{% url 'Login' %}" class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 '>Log-In</a>
+                    </p>
+                    <button type='submit' class='inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 mt-2'>Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+    
